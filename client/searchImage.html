@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<style type="text/css" >
+	.header{
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
+  
+  .main{
+    background-color: #E9EEF3;
+    color: #333;
+
+  }
+</style>
+</head>
+<body>
+  <div id="app" class="main">
+      <div>
+        <el-form :inline="true" :model="formParams" class="demo-form-inline">
+            <el-form-item label="趋势比">
+               <el-input v-model="formParams.trend" placeholder="趋势比"></el-input>
+            </el-form-item>
+            <el-form-item label="错误率">
+              <el-input-number v-model="formParams.errorRange" :min="0" :precision="1" :step="0.1" :max="1"></el-input-number>
+            </el-form-item>
+
+            <el-form-item>
+               <el-button type="primary" @click="onSubmit">查询</el-button>
+            </el-form-item>
+        </el-form>
+      </div>
+      <div>
+      	  <el-table
+    ref="multipleTable"
+    :data="tableData3"
+    tooltip-effect="dark"
+    stripe
+    style="width: 100%"
+    @selection-change="handleSelectionChange">
+    <el-table-column
+      type="selection"
+      width="55">
+    </el-table-column>
+    <el-table-column
+      label="图片"
+      width="120">
+       <img src="C:\dev\install\IntelliJ IDEA 2018.2.5\background_image\b3.jpeg" width="50px" height="50px" />
+    </el-table-column>
+
+    <el-table-column
+      prop="name"
+      label="趋势"
+      width="120">
+       <template slot-scope="scope"> 
+         <el-tag size="medium">{{ scope.row.date }}</el-tag>
+       </template>
+    </el-table-column>
+
+    <el-table-column
+      prop="address"
+      label="位置"
+      show-overflow-tooltip>
+    </el-table-column>
+     <el-table-column
+      prop="address"
+      label="定量"
+      show-overflow-tooltip>
+    </el-table-column>
+   </el-table>
+      	
+
+      </div>
+
+       <div class="block">
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage4"
+          :page-sizes="[100, 200, 300, 400]"
+          :page-size="100"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="400">
+        </el-pagination>
+     </div>
+
+     <div>
+     	 <el-button type="primary" style="width: 100%">下载选中的图片</el-button>
+     </div>
+   </div>
+
+
+	
+
+	<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script type="text/javascript">
+  var app = new Vue({
+  el: '#app',
+   data() {
+      return {
+        formParams: {
+          trend: '',
+          errorRange: ''
+        },
+          tableData3: [{
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-08',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-06',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-07',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }],
+        multipleSelection: []
+      }
+    },
+    methods: {
+      onSubmit() {
+        console.log('submit!');
+      }
+    }
+})
+
+
+</script>
+</body>
+</html>
